@@ -20,6 +20,12 @@ public class UserLoginController {
     @Autowired
     UserLoginService userLoginService;
 
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody LoginRequest loginRequest) {
+        UserLogin register = userLoginService.register(loginRequest);
+        return new ResponseEntity<>(register, HttpStatus.resolve(HttpStatus.OK.value()));
+    }
+
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         try {
